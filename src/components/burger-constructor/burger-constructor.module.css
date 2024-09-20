@@ -1,7 +1,7 @@
 .root {
   display: grid;
   row-gap: 16px;
-  height: calc(100% / 2.6);
+  height: calc(100% / 2.8);
   overflow-y: scroll;
   justify-content: center;
 }
@@ -10,5 +10,11 @@
   display: inline-flex;
   align-items: center;
   column-gap: 12px;
+  justify-content: flex-end;
+}
+
+.order {
+  display: flex;
+  align-items: center;
   justify-content: flex-end;
 }
