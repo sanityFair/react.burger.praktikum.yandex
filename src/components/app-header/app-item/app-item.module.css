@@ -5,17 +5,17 @@
   column-gap: 8px;
   text-decoration: none;
   color: var(--text--primary-light-standart-text);
-  font-family: "JetBrains Mono";
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 24px;
 }
 
 .inactive {
+  transition: all ease .2s;
   color: var(--text--dark-grey-secondary-text);
 
   & svg {
     fill: var(--text--dark-grey-secondary-text);
+  }
+
+  &:hover {
+    color: var(--text--primary-light-standart-text);
   }
 }

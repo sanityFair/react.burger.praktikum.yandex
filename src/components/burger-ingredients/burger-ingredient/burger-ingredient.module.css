@@ -1,0 +1,24 @@
+.root {
+  display: flex;
+  width: 272px;
+  height: 208px;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+
+  & > :last-child {
+    text-align: center;
+  }
+}
+
+.imageContainer {
+  position: relative;
+  padding: 0 16px;
+}
+
+.price {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(2, max-content);
+  column-gap: 8px;
+}

@@ -1,18 +1,18 @@
-import { Container } from '@mui/material'
-import { Navigate, Outlet } from 'react-router-dom'
-import { AuthGuard } from '@/app/guards/auth-guard'
-import { ErrorBoundary } from '../error-boundary/error-boundary'
-import { Fullscreen } from '../fullscreen/fullscreen'
+import {
+  ErrorBoundary,
+  AppHeader,
+  BurgerIngredients,
+  BurgerConstructor,
+} from "@/components";
 
-export const App = () => {
-  return (
-    <ErrorBoundary fallback={<Navigate to="/error" />}>
-      <Container disableGutters maxWidth={false}>
-        <AuthGuard>
-          <Outlet />
-        </AuthGuard>
-        <Fullscreen />
-      </Container>
-    </ErrorBoundary>
-  )
-}
+import appStyles from "./app.module.css";
+
+export const App = () => (
+  <ErrorBoundary fallback="">
+    <AppHeader />
+    <main className={appStyles.main}>
+      <BurgerIngredients />
+      <BurgerConstructor />
+    </main>
+  </ErrorBoundary>
+);
