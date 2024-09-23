@@ -1,13 +1,19 @@
 import { useState } from "react";
 import burgerIngredientsStyles from "./burger-ingredients.module.css";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
-import { MOCK } from "@/constants";
 import { IngredientList } from "./ingredient-list";
+import { Modal } from "@/components/modal";
+import { Ingredient } from "@/types";
 
-export const BurgerIngredients = () => {
+export type IngredientProps = {
+  ingredients: Ingredient[];
+};
+
+export const BurgerIngredients = ({ ingredients }: IngredientProps) => {
   const [current, setCurrent] = useState("bun");
+
   return (
-    <section className="">
+    <section>
       <h1 className="text text_type_main-large">Соберите бургер</h1>
       <div className={burgerIngredientsStyles.tabs}>
         <Tab value="bun" active={current === "bun"} onClick={setCurrent}>
@@ -22,15 +28,15 @@ export const BurgerIngredients = () => {
       </div>
       <div className={burgerIngredientsStyles.content}>
         <IngredientList
-          items={MOCK.filter((item) => item.type === "bun")}
+          items={ingredients.filter((item) => item.type === "bun")}
           title="Булки"
         />
         <IngredientList
-          items={MOCK.filter((item) => item.type === "sauce")}
+          items={ingredients.filter((item) => item.type === "sauce")}
           title="Соусы"
         />
         <IngredientList
-          items={MOCK.filter((item) => item.type === "main")}
+          items={ingredients.filter((item) => item.type === "main")}
           title="Начинки"
         />
       </div>

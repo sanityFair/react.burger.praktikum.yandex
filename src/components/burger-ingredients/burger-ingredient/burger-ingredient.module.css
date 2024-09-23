@@ -5,9 +5,14 @@
   flex-direction: column;
   align-items: center;
   gap: 8px;
-
+  transition: opacity 0.2s linear;
+  
   & > :last-child {
     text-align: center;
+  }
+
+  &:hover {
+    opacity: 0.6;
   }
 }
 

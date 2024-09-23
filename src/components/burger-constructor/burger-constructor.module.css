@@ -1,7 +1,7 @@
 .root {
   display: grid;
   row-gap: 16px;
-  height: calc(100% / 2.8);
+  height: calc(100vh / 1.5);
   overflow-y: scroll;
   justify-content: center;
 }

@@ -12,3 +12,8 @@ export type Ingredient = {
   image_large: string;
   __v: number;
 };
+
+export type IngredientResponse = {
+  success: boolean;
+  data: Ingredient[];
+};

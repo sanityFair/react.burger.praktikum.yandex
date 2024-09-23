@@ -2,24 +2,48 @@ import { Ingredient } from "@/types";
 import { BurgerIngredient } from "../burger-ingredient";
 
 import bunListStyles from "./ingredient-list.module.css";
+import { IngredientDetails } from "@/components/ingredient-details";
+import { useBoolean } from "@/hooks";
+import { useCallback, useState } from "react";
 
 type Props = {
-  items: Pick<Ingredient, "_id" | "image" | "name" | "price">[];
+  items: Ingredient[];
   title: string;
 };
 
-export const IngredientList = ({ items, title }: Props) => (
-  <div className={bunListStyles.root}>
-    <h6 className="text text_type_main-medium">{title}</h6>
-    <div className={bunListStyles.items}>
-      {items?.map((item) => (
-        <BurgerIngredient
-          name={item.name}
-          image={item.image}
-          price={item.price}
-          key={item._id}
+export const IngredientList = ({ items, title }: Props) => {
+  const [selectedIngredient, setSelectedIngredient] =
+    useState<Partial<Ingredient> | null>(null);
+  const [isOpen, { off, on }] = useBoolean(false);
+
+
+  const handleSelectIngredient = useCallback(
+    (ingredient: Partial<Ingredient>) => {
+      setSelectedIngredient(ingredient);
+      on();
+    },
+    []
+  );
+
+  return (
+    <div className={bunListStyles.root}>
+      <h6 className="text text_type_main-medium">{title}</h6>
+      <div className={bunListStyles.items}>
+        {items?.map((item) => (
+          <BurgerIngredient
+            {...item}
+            key={item._id}
+            onClick={handleSelectIngredient}
+          />
+        ))}
+      </div>
+      {selectedIngredient && (
+        <IngredientDetails
+          onClose={off}
+          isOpen={isOpen}
+          {...selectedIngredient}
         />
-      ))}
+      )}
     </div>
-  </div>
-);
+  );
+};

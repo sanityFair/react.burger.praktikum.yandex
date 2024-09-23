@@ -1,0 +1,12 @@
+.root {
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  inset: 0;
+  background: var(--modal-overlay-bg);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
