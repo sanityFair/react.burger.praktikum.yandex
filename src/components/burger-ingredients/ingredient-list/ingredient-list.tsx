@@ -5,6 +5,7 @@ import bunListStyles from "./ingredient-list.module.css";
 import { IngredientDetails } from "@/components/ingredient-details";
 import { useBoolean } from "@/hooks";
 import { useCallback, useState } from "react";
+import { Modal } from "@/components/modal";
 
 type Props = {
   items: Ingredient[];
@@ -15,7 +16,6 @@ export const IngredientList = ({ items, title }: Props) => {
   const [selectedIngredient, setSelectedIngredient] =
     useState<Partial<Ingredient> | null>(null);
   const [isOpen, { off, on }] = useBoolean(false);
-
 
   const handleSelectIngredient = useCallback(
     (ingredient: Partial<Ingredient>) => {
@@ -32,18 +32,14 @@ export const IngredientList = ({ items, title }: Props) => {
         {items?.map((item) => (
           <BurgerIngredient
             {...item}
-            key={item._id}
+            key={`${item._id}-${item.name}`}
             onClick={handleSelectIngredient}
           />
         ))}
       </div>
-      {selectedIngredient && (
-        <IngredientDetails
-          onClose={off}
-          isOpen={isOpen}
-          {...selectedIngredient}
-        />
-      )}
+      <Modal isOpen={isOpen} onClose={off} title="Детали ингредиента">
+        <IngredientDetails {...selectedIngredient} />
+      </Modal>
     </div>
   );
 };

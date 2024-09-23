@@ -9,39 +9,56 @@ import burgerConstructorStyles from "./burger-constructor.module.css";
 import { IngredientProps } from "../burger-ingredients";
 import { OrderDetails } from "../order-details";
 import { useBoolean } from "@/hooks";
+import { Modal } from "../modal";
+import { useMemo } from "react";
 
 export const BurgerConstructor = ({ ingredients }: IngredientProps) => {
   const [isOpen, { off, on }] = useBoolean(false);
+  const bun = useMemo(
+    () => ingredients.find((item) => item.type === "bun"),
+    [ingredients]
+  );
+
+  const bunTop = bun && (
+    <ConstructorElement
+      type="top"
+      isLocked={true}
+      text={bun.name.concat(" (верх)")}
+      price={bun.price}
+      thumbnail={bun.image}
+      key={`${bun._id}-top`}
+    />
+  );
+
+  const bunBottom = bun && (
+    <ConstructorElement
+      type="bottom"
+      isLocked={true}
+      text={bun.name.concat(" (низ)")}
+      price={bun.price}
+      thumbnail={bun.image}
+      key={`${bun._id}-top`}
+    />
+  );
+
   return (
     <section className="mt-20">
       <div className={burgerConstructorStyles.root.concat(" mb-10")}>
-        {ingredients.map((item, index) => (
-          <div className={burgerConstructorStyles.item}>
-            {index !== 0 && index !== ingredients.length - 1 && (
+        <div className={burgerConstructorStyles.item}>{bunTop}</div>
+        {ingredients
+          .filter((item) => item.type !== "bun")
+          .map((item) => (
+            <div className={burgerConstructorStyles.item}>
               <DragIcon type="primary" />
-            )}
-            <ConstructorElement
-              type={
-                index === 0
-                  ? "top"
-                  : index === ingredients.length - 1
-                  ? "bottom"
-                  : undefined
-              }
-              isLocked={
-                index === 0
-                  ? true
-                  : index === ingredients.length - 1
-                  ? true
-                  : false
-              }
-              text={item.name}
-              price={item.price}
-              thumbnail={item.image}
-              key={item._id}
-            />
-          </div>
-        ))}
+              <ConstructorElement
+                text={item.name}
+                price={item.price}
+                thumbnail={item.image}
+                key={item._id}
+              />
+            </div>
+          ))}
+        <div className={burgerConstructorStyles.item}>{bunBottom}</div>
       </div>
       <div className={burgerConstructorStyles.order}>
         <span className="text text_type_digits-medium ">
@@ -57,7 +74,9 @@ export const BurgerConstructor = ({ ingredients }: IngredientProps) => {
           Оформить заказ
         </Button>
       </div>
-      <OrderDetails isOpen={isOpen} onClose={off} orderId="034536" />
+      <Modal isOpen={isOpen} onClose={off}>
+        <OrderDetails orderId="034536" />
+      </Modal>
     </section>
   );
 };
