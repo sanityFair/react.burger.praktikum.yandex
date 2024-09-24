@@ -20,31 +20,37 @@ export const BurgerConstructor = ({ ingredients }: IngredientProps) => {
   );
 
   const bunTop = bun && (
-    <ConstructorElement
-      type="top"
-      isLocked={true}
-      text={bun.name.concat(" (верх)")}
-      price={bun.price}
-      thumbnail={bun.image}
-      key={`${bun._id}-top`}
-    />
+    <>
+      <ConstructorElement
+        type="top"
+        isLocked={true}
+        text={bun.name.concat(" (верх)")}
+        price={bun.price}
+        thumbnail={bun.image}
+        key={`${bun._id}-top`}
+      />
+      <div className={burgerConstructorStyles.spacer} />
+    </>
   );
 
   const bunBottom = bun && (
-    <ConstructorElement
-      type="bottom"
-      isLocked={true}
-      text={bun.name.concat(" (низ)")}
-      price={bun.price}
-      thumbnail={bun.image}
-      key={`${bun._id}-top`}
-    />
+    <>
+      <ConstructorElement
+        type="bottom"
+        isLocked={true}
+        text={bun.name.concat(" (низ)")}
+        price={bun.price}
+        thumbnail={bun.image}
+        key={`${bun._id}-top`}
+      />
+      <div className={burgerConstructorStyles.spacer} />
+    </>
   );
 
   return (
-    <section className="mt-20">
-      <div className={burgerConstructorStyles.root.concat(" mb-10")}>
-        <div className={burgerConstructorStyles.item}>{bunTop}</div>
+    <section className={burgerConstructorStyles.root}>
+      <div className={burgerConstructorStyles.item}>{bunTop}</div>
+      <div className={burgerConstructorStyles.content}>
         {ingredients
           .filter((item) => item.type !== "bun")
           .map((item) => (
@@ -58,8 +64,8 @@ export const BurgerConstructor = ({ ingredients }: IngredientProps) => {
               />
             </div>
           ))}
-        <div className={burgerConstructorStyles.item}>{bunBottom}</div>
       </div>
+      <div className={burgerConstructorStyles.item}>{bunBottom}</div>
       <div className={burgerConstructorStyles.order}>
         <span className="text text_type_digits-medium ">
           624 <CurrencyIcon type="primary" />
@@ -73,6 +79,7 @@ export const BurgerConstructor = ({ ingredients }: IngredientProps) => {
         >
           Оформить заказ
         </Button>
+        <div className={burgerConstructorStyles.spacer} />
       </div>
       <Modal isOpen={isOpen} onClose={off}>
         <OrderDetails orderId="034536" />
