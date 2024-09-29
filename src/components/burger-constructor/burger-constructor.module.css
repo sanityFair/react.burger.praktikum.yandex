@@ -1,0 +1,32 @@
+.root {
+  display: grid;
+  place-items: flex-end;
+  row-gap: 16px;
+  margin-top: 80px;
+}
+
+.content {
+  display: grid;
+  row-gap: 16px;
+  height: calc(100vh / 2);
+  overflow-y: scroll;
+  justify-content: center;
+  width: 100%;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 12px;
+  justify-content: flex-end;
+}
+
+.order {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.spacer {
+  width: 24px;
+}

@@ -1,0 +1,21 @@
+.root {
+  height: 88px;
+  position: sticky;
+  margin: 40px;
+  background-color: var(--interface--modal-bg);
+
+  & .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    align-items: center;
+    grid-template-columns: max-content max-content 1fr max-content;
+    width: 100%;
+    height: 100%;
+    column-gap: 16px;
+  }
+
+  & .logo {
+    justify-self: center;
+  }
+}

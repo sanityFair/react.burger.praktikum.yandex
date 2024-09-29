@@ -1,0 +1,53 @@
+:root {
+  /* Color styles */
+  --neon: #b5ff3d;
+  --interface--modal-bg: #1c1c21;
+  --modal-overlay-bg: #00000099;
+  --interface--accent: #4c4cff;
+  --interface--active: #4c4cff;
+  --interface--input: #2f2f37;
+  --interface--success: #00cccc;
+  --interface--error: #e52b1a;
+  --interface--bg: #131316;
+  --interface--modal-edge: #4c4cff;
+  --text--primary-light-standart-text: #f2f2f3;
+  --text--dark-grey-secondary-text: #8585ad;
+  --text--disabled: #3a3a55;
+
+  /* Text-size styles */
+  --desktop--text: 16px;
+  --desktop--display-large: 36px;
+  --desktop--display-small: 24px;
+  --desktop--digits-small: 28px;
+  --desktop--digits-large: 144px;
+  --desktop--digits-medium: 48px;
+  --mobile--text: 14px;
+  --mobile--display-small: 20px;
+  --mobile--display-large: 28px;
+  --mobile--digits-small: 22px;
+  --mobile--digits-large: 72px;
+
+  /* Effect styles */
+  --button--glow: 0px 4px 32px rgba(51, 51, 255, 0.5),
+    0px 0px 8px rgba(51, 51, 255, 0.25), 0px 0px 16px rgba(51, 51, 255, 0.25);
+  --card--base: 0px 0px 1px rgba(0, 0, 0, 0.04), 0px 0px 2px rgba(0, 0, 0, 0.06),
+    0px 4px 8px rgba(0, 0, 0, 0.04);
+  --card--x-large: 0px 0px 1px rgba(0, 0, 0, 0.04),
+    0px 4px 8px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04),
+    0px 24px 32px rgba(0, 0, 0, 0.04);
+  --tab--active: inset 0px -2px 0px rgba(76, 76, 255, 1);
+  --tab--inactive: inset 0px -1px 0px rgba(47, 47, 55, 1);
+  --modal-shadow: 0px 24px 32px 0px rgba(0, 0, 0, 0.04),
+    0px 16px 24px 0px rgba(0, 0, 0, 0.04), 0px 4px 8px 0px rgba(0, 0, 0, 0.04),
+    0px 0px 1px 0px rgba(0, 0, 0, 0.04);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+}

@@ -1,0 +1,27 @@
+.modal {
+  border-radius: 40px;
+  border: 1px solid var(---interface-modal-edge);
+  background: var(--interface--modal-bg);
+  box-shadow: var(--modal-shadow);
+  display: grid;
+  padding: 40px;
+  min-width: 720px;
+  row-gap: 24px;
+
+  & .header {
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+
+    & > svg {
+      transition: opacity 0.2s linear;
+      &:hover {
+        opacity: 0.6;
+        cursor: pointer;
+      }
+    }
+  }
+
+  & .content {
+  }
+}
