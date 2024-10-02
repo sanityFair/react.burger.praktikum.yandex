@@ -5,3 +5,12 @@
     grid-template-columns: repeat(2,1fr);
     gap:24px;
 }
+
+
+.loaderContainer {
+    position:absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

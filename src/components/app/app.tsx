@@ -4,26 +4,33 @@ import {
   BurgerIngredients,
   BurgerConstructor,
 } from "@/components";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 import appStyles from "./app.module.css";
-import { IngredientResponse } from "@/types";
-import { useFetch } from "@/hooks";
-import { config } from "@/constants";
+
+import { useGetIngredientsQuery } from "@/services";
+import { Loader } from "../loader";
 
 export const App = () => {
-  const { data, isLoading } = useFetch<IngredientResponse>({
-    url: config.ingredients,
-  });
+  const { isFetching } = useGetIngredientsQuery();
 
-  if (isLoading || !data?.data) return <h1>...Загрузка</h1>;
+  if (isFetching)
+    return (
+      <div className={appStyles.loaderContainer}>
+        <Loader />
+      </div>
+    );
 
   return (
     <ErrorBoundary fallback="Произошла ошибка.">
       <AppHeader />
-      <main className={appStyles.main}>
-        <BurgerIngredients ingredients={data.data} />
-        <BurgerConstructor ingredients={data.data} />
-      </main>
+      <DndProvider backend={HTML5Backend}>
+        <main className={appStyles.main}>
+          <BurgerIngredients />
+          <BurgerConstructor />
+        </main>
+      </DndProvider>
     </ErrorBoundary>
   );
 };

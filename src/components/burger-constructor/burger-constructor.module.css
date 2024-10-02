@@ -8,17 +8,12 @@
 .content {
   display: grid;
   row-gap: 16px;
-  height: calc(100vh / 2);
+  height: 470px;
   overflow-y: scroll;
   justify-content: center;
   width: 100%;
-}
-
-.item {
-  display: inline-flex;
-  align-items: center;
-  column-gap: 12px;
-  justify-content: flex-end;
+  border: 3px dashed transparent;
+  grid-template-rows: repeat(auto-fill, minmax(min-content, 80px));
 }
 
 .order {
@@ -29,4 +24,32 @@
 
 .spacer {
   width: 24px;
+}
+
+.hover {
+  border-color: var(--interface--active);
+  border-style: dashed;
+  border-radius: 16px;
+  opacity: 0.8;
+}
+
+.empty {
+  border: 3px dashed var(--text--disabled);
+  border-radius: 16px;
+  width: 85%;
+  margin: 0 auto;
+  position: relative;
+
+  &::after {
+    content: "Перетащите ингредиенты";
+    font-family: "Jet Brains Mono";
+    font-size: 24px;
+    font-weight: normal;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    inset: 0;
+  }
 }

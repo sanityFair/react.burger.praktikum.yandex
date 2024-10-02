@@ -17,3 +17,15 @@ export type IngredientResponse = {
   success: boolean;
   data: Ingredient[];
 };
+
+export type OrderPayload = {
+  ingredients: string[];
+};
+
+export type OrderResponse = {
+  name: string;
+  order: {
+    number: number;
+  };
+  success: boolean;
+};
