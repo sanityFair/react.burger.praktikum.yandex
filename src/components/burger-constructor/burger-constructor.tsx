@@ -93,11 +93,7 @@ export const BurgerConstructor = () => {
         {ingredients
           .filter((item) => item.type !== "bun")
           .map((item, index) => (
-            <DraggableIngredient
-              {...item}
-              index={index}
-              key={`${item._id}-${index}`}
-            />
+            <DraggableIngredient {...item} index={index} key={item.key} />
           ))}
       </div>
       <div className={burgerConstructorStyles.item}>

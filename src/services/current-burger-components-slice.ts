@@ -30,14 +30,17 @@ export const currentBurgerComponentsSlice = createSlice({
       if (payload.type === "bun") {
         return {
           ...state,
-          bun: payload,
+          bun: { ...payload, key: crypto.randomUUID() },
           orderIds,
         };
       }
 
       return {
         ...state,
-        ingredients: [...state.ingredients, payload],
+        ingredients: [
+          ...state.ingredients,
+          { ...payload, key: crypto.randomUUID() },
+        ],
         orderIds: [...orderIds, payload._id],
       };
     },
