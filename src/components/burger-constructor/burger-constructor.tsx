@@ -1,8 +1,6 @@
 import {
   Button,
-  ConstructorElement,
   CurrencyIcon,
-  DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import burgerConstructorStyles from "./burger-constructor.module.css";
@@ -98,7 +96,7 @@ export const BurgerConstructor = () => {
             <DraggableIngredient
               {...item}
               index={index}
-              key={`${crypto.randomUUID()}`}
+              key={`${item._id}-${index}`}
             />
           ))}
       </div>
