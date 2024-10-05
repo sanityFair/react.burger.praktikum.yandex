@@ -1,0 +1,12 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 12px;
+  justify-content: flex-end;
+  transition: all 0.2s ease-in-out;
+}
+
+.hover {
+  opacity: 0.5;
+  transform: translateX(10%) scale(0.9);
+}

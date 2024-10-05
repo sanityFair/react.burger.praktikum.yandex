@@ -2,7 +2,7 @@ import orderDetailsStyles from "./order-details.module.css";
 import classNames from "classnames";
 
 type Props = {
-  orderId: string;
+  orderId: number;
 };
 
 export const OrderDetails = ({ orderId }: Props) => (

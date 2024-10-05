@@ -1,0 +1,21 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 12px;
+  justify-content: flex-end;
+
+  & .ingredient {
+    border: 3px dashed transparent;
+    transition: all 0.05s linear;
+  }
+
+  & .hover {
+    border-color: var(--interface--active);
+    border-style: dashed;
+    opacity: 0.8;
+  }
+
+  & .spacer {
+    width: 24px;
+  }
+}

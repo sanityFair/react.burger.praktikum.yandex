@@ -11,9 +11,22 @@ export type Ingredient = {
   image_mobile: string;
   image_large: string;
   __v: number;
+  key?: string;
 };
 
 export type IngredientResponse = {
   success: boolean;
   data: Ingredient[];
+};
+
+export type OrderPayload = {
+  ingredients: string[];
+};
+
+export type OrderResponse = {
+  name: string;
+  order: {
+    number: number;
+  };
+  success: boolean;
 };
