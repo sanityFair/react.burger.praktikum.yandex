@@ -1,31 +1,31 @@
 import {
   ConstructorElement,
   DragIcon,
-} from "@ya.praktikum/react-developer-burger-ui-components";
-import draggableIngredientStyles from "./draggable-ingredient.module.css";
-import { Ingredient } from "@/types";
-import { useDrag, useDrop } from "react-dnd";
-import { useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
-import { currentBurgerComponentsSlice } from "@/services";
-import classNames from "classnames";
+} from '@ya.praktikum/react-developer-burger-ui-components';
+import draggableIngredientStyles from './draggable-ingredient.module.css';
+import { Ingredient } from '@/types';
+import { useDrag, useDrop } from 'react-dnd';
+import { useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { currentBurgerComponentsSlice } from '@/services';
+import classNames from 'classnames';
 
 type Props = Partial<Ingredient> & {
   index?: number;
 };
 
 export const DraggableIngredient = ({
-  name = "",
+  name = '',
   price = 0,
-  image = "",
+  image = '',
   index = 0,
 }: Props) => {
   const ref = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
 
   const [{ isHover }, drop] = useDrop({
-    accept: "item",
-    drop(item: Record<"index", number>) {
+    accept: 'item',
+    drop(item: Record<'index', number>) {
       dispatch(
         currentBurgerComponentsSlice.actions.moveIngredient({
           from: item.index,
@@ -39,10 +39,10 @@ export const DraggableIngredient = ({
   });
 
   const [{ cursor }, drag] = useDrag({
-    type: "item",
+    type: 'item',
     item: { index },
     collect: (monitor) => ({
-      cursor: monitor.isDragging() ? "grabbing" : "grab",
+      cursor: monitor.isDragging() ? 'grabbing' : 'grab',
     }),
   });
 
@@ -61,7 +61,7 @@ export const DraggableIngredient = ({
       draggable={true}
       style={{ cursor }}
     >
-      <DragIcon type="primary" />
+      <DragIcon type='primary' />
       <ConstructorElement
         text={name}
         price={price}

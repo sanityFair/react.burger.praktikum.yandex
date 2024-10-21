@@ -1,0 +1,4 @@
+.root {
+  composes: root from '../login-page/styles.module.css';
+  composes: error from '../login-page/styles.module.css';
+}

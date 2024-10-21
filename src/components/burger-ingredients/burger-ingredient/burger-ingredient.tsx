@@ -1,22 +1,24 @@
 import {
   Counter,
   CurrencyIcon,
-} from "@ya.praktikum/react-developer-burger-ui-components";
-import burgerIngredientStyles from "./burger-ingredient.module.css";
-import { Ingredient } from "@/types";
-import { memo, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
+} from '@ya.praktikum/react-developer-burger-ui-components';
+import burgerIngredientStyles from './burger-ingredient.module.css';
+import { Ingredient } from '@/types';
+import { memo, useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   currentIngredientSlice,
   selectIdsCurrentBurgerIngredients,
-} from "@/services";
-import { useDrag } from "react-dnd";
-import isEqual from "lodash.isequal";
+} from '@/services';
+import { useDrag } from 'react-dnd';
+import isEqual from 'lodash.isequal';
+import { useNavigate } from 'react-router';
 
 type Props = Partial<Ingredient>;
 
 export const BurgerIngredient = memo((props: Props) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const ids = useSelector(selectIdsCurrentBurgerIngredients, isEqual);
   const count = useMemo(
     () => ids.filter((id) => id === props._id).length,
@@ -33,6 +35,7 @@ export const BurgerIngredient = memo((props: Props) => {
 
   const handleSelectIngredient = () => {
     dispatch(currentIngredientSlice.actions.selectIngredient(props));
+    navigate(`/ingredients/${props._id}`, { state: { modal: true } });
   };
 
   return (
@@ -44,17 +47,17 @@ export const BurgerIngredient = memo((props: Props) => {
         ref={dragRef}
       >
         <div className={burgerIngredientStyles.imageContainer}>
-          <img src={props.image} alt={props.name} width="100%" />
-          {!!count && <Counter count={count} size="default" />}
+          <img src={props.image} alt={props.name} width='100%' />
+          {!!count && <Counter count={count} size='default' />}
         </div>
         <span
           className={burgerIngredientStyles.price.concat(
-            " text text_type_main-small"
+            ' text text_type_main-small'
           )}
         >
-          {props.price} <CurrencyIcon type="primary" />
+          {props.price} <CurrencyIcon type='primary' />
         </span>
-        <p className="text text_type_main-small">{props.name}</p>
+        <p className='text text_type_main-small'>{props.name}</p>
       </div>
     )
   );
