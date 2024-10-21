@@ -30,3 +30,51 @@ export type OrderResponse = {
   };
   success: boolean;
 };
+
+export type ResetPasswordResponse = {
+  success: boolean;
+  message: string;
+};
+
+export type ResetPasswordPayload = {
+  email: string;
+};
+
+export type ChangePasswordResponse = {
+  success: boolean;
+  message: string;
+};
+
+export type ChangePasswordPayload = {
+  password: string;
+  token: string;
+};
+
+export type RegistrationPayload = {
+  email: string;
+  password: string;
+  name: string;
+};
+
+export type User = {
+  email: string;
+  name: string;
+};
+
+export type RegistrationResponse = {
+  success: true;
+  user: User;
+  accessToken: string;
+  refreshToken: string;
+};
+
+export type RefreshTokenResponse = {
+  success: boolean;
+  accessToken: string;
+  refreshToken: string;
+};
+
+export type UserResponse = {
+  success: boolean;
+  user: User;
+};

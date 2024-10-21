@@ -1,31 +1,35 @@
 import {
   Button,
   CurrencyIcon,
-} from "@ya.praktikum/react-developer-burger-ui-components";
+} from '@ya.praktikum/react-developer-burger-ui-components';
 
-import burgerConstructorStyles from "./burger-constructor.module.css";
-import { OrderDetails } from "../order-details";
-import { useBoolean } from "@/hooks";
-import { Modal } from "../modal";
-import { useDispatch, useSelector } from "react-redux";
+import burgerConstructorStyles from './burger-constructor.module.css';
+import { OrderDetails } from '../order-details';
+import { useBoolean } from '@/hooks';
+import { Modal } from '../modal';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   currentBurgerComponentsSlice,
   selectCurrentBurgerBun,
   selectCurrentBurgerIngredients,
   selectIdsCurrentBurgerIngredients,
   useCreateOrderMutation,
-} from "@/services";
-import isEqual from "lodash.isequal";
-import { useDrop } from "react-dnd";
-import classNames from "classnames";
-import { Bun } from "./bun";
-import { DraggableIngredient } from "./draggable-ingredient";
-import { Ingredient } from "@/types";
-import { useMemo } from "react";
+  useGetUserQuery,
+} from '@/services';
+import isEqual from 'lodash.isequal';
+import { useDrop } from 'react-dnd';
+import classNames from 'classnames';
+import { Bun } from './bun';
+import { DraggableIngredient } from './draggable-ingredient';
+import { Ingredient } from '@/types';
+import { useMemo } from 'react';
+import { useNavigate } from 'react-router';
 
 export const BurgerConstructor = () => {
+  const navigate = useNavigate();
   const [createOrder, { data }] = useCreateOrderMutation();
   const [isOpen, { off, on }] = useBoolean(false);
+  const { isError } = useGetUserQuery();
   const bun = useSelector(selectCurrentBurgerBun, isEqual);
   const ingredients = useSelector(selectCurrentBurgerIngredients, isEqual);
   const ids = useSelector(selectIdsCurrentBurgerIngredients, isEqual);
@@ -49,7 +53,7 @@ export const BurgerConstructor = () => {
   const dispatch = useDispatch();
 
   const [{ isBunHover }, dropTargetBun] = useDrop({
-    accept: "bun",
+    accept: 'bun',
     drop(ingredient: Ingredient) {
       dispatch(currentBurgerComponentsSlice.actions.addIngredient(ingredient));
     },
@@ -59,7 +63,7 @@ export const BurgerConstructor = () => {
   });
 
   const [{ isIngredientHover }, dropTargetIngredient] = useDrop({
-    accept: ["main", "sauce"],
+    accept: ['main', 'sauce'],
     drop(ingredient: Ingredient) {
       dispatch(currentBurgerComponentsSlice.actions.addIngredient(ingredient));
     },
@@ -69,6 +73,10 @@ export const BurgerConstructor = () => {
   });
 
   const handleCreateOrder = async () => {
+    if (isError) {
+      navigate('/login');
+      return;
+    }
     await createOrder({ ingredients: ids }).unwrap();
     on();
   };
@@ -77,8 +85,8 @@ export const BurgerConstructor = () => {
     <section className={burgerConstructorStyles.root} ref={dropTargetBun}>
       <div className={burgerConstructorStyles.item}>
         <Bun
-          position="top"
-          name={bun?.name.concat(" (верх)")}
+          position='top'
+          name={bun?.name.concat(' (верх)')}
           isHover={isBunHover}
           {...bun}
         />
@@ -91,28 +99,28 @@ export const BurgerConstructor = () => {
         ref={dropTargetIngredient}
       >
         {ingredients
-          .filter((item) => item.type !== "bun")
+          .filter((item) => item.type !== 'bun')
           .map((item, index) => (
             <DraggableIngredient {...item} index={index} key={item.key} />
           ))}
       </div>
       <div className={burgerConstructorStyles.item}>
         <Bun
-          position="bottom"
-          name={bun?.name.concat(" (низ)")}
+          position='bottom'
+          name={bun?.name.concat(' (низ)')}
           isHover={isBunHover}
           {...bun}
         />
       </div>
       <div className={burgerConstructorStyles.order}>
-        <span className="text text_type_digits-medium ">
-          {amount} <CurrencyIcon type="primary" />
+        <span className='text text_type_digits-medium '>
+          {amount} <CurrencyIcon type='primary' />
         </span>
         <Button
-          htmlType="button"
-          type="primary"
-          size="large"
-          extraClass="ml-4"
+          htmlType='button'
+          type='primary'
+          size='large'
+          extraClass='ml-4'
           onClick={handleCreateOrder}
         >
           Оформить заказ
