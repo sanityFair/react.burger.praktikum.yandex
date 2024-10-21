@@ -1,11 +1,11 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from 'react';
 
-type Method = "GET" | "POST" | "PUT" | "DELETE";
+type Method = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
-type FetchParams = {
+type FetchParams<T = {}> = {
   url: string;
   method?: Method;
-  payload?: any;
+  payload?: T;
 };
 
 type FetchState<T> = {
@@ -16,7 +16,7 @@ type FetchState<T> = {
 
 export const useFetch = <T>({
   url,
-  method = "GET",
+  method = 'GET',
   payload,
 }: FetchParams): FetchState<T> => {
   const [state, setState] = useState<FetchState<T>>({
@@ -31,7 +31,7 @@ export const useFetch = <T>({
       const response = await fetch(url, {
         method,
         body: payload ? JSON.stringify(payload) : undefined,
-        headers: { "Content-Type": "application/json" },
+        headers: { 'Content-Type': 'application/json' },
       });
 
       if (!response.ok) {

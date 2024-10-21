@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { apiSlice } from "./api-slice";
-import { Ingredient } from "@/types";
-import { ApplicationState } from "@/store";
+import { createSlice } from '@reduxjs/toolkit';
+import { apiSlice } from './api-slice';
+import { Ingredient } from '@/types';
+import { ApplicationState } from '@/store';
 
 export type CollectedIngredientsState = {
   isLoading: boolean;
@@ -15,7 +15,7 @@ const initialState: CollectedIngredientsState = {
 };
 
 export const collectedIngredientsSlice = createSlice({
-  name: "collectedIngredients",
+  name: 'collectedIngredients',
   initialState,
   reducers: {},
   extraReducers(builder) {

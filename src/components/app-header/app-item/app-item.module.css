@@ -8,7 +8,7 @@
 }
 
 .inactive {
-  transition: all ease .2s;
+  transition: all ease 0.2s;
   color: var(--text--dark-grey-secondary-text);
 
   & svg {
