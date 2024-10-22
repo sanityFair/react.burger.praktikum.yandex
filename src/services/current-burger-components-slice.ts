@@ -1,7 +1,7 @@
-import { createSlice, PayloadAction, current } from "@reduxjs/toolkit";
-import { apiSlice } from "./api-slice";
-import { Ingredient } from "@/types";
-import { ApplicationState } from "@/store";
+import { createSlice, PayloadAction, current } from '@reduxjs/toolkit';
+import { apiSlice } from './api-slice';
+import { Ingredient } from '@/types';
+import { ApplicationState } from '@/store';
 
 export type CurrentBurgerComponentsState = {
   bun?: Ingredient;
@@ -15,19 +15,19 @@ const initialState: CurrentBurgerComponentsState = {
 };
 
 export const currentBurgerComponentsSlice = createSlice({
-  name: "currentBurgerComponents",
+  name: 'currentBurgerComponents',
   initialState,
   reducers: {
     addIngredient(state, { payload }: PayloadAction<Ingredient>) {
       const orderIds = [...state.orderIds];
 
-      if (payload.type === "bun" && state.bun?._id !== payload._id) {
+      if (payload.type === 'bun' && state.bun?._id !== payload._id) {
         const index = orderIds.findIndex((id) => id === state.bun?._id);
 
         orderIds.splice(index, 1, payload._id);
       }
 
-      if (payload.type === "bun") {
+      if (payload.type === 'bun') {
         return {
           ...state,
           bun: { ...payload, key: crypto.randomUUID() },
@@ -68,7 +68,9 @@ export const currentBurgerComponentsSlice = createSlice({
       const { from, to } = payload;
       const ingredients = [...current(state).ingredients];
 
-      const [removedTo] = ingredients.splice(to, 1, { ...ingredients[from] });
+      const [removedTo] = ingredients.splice(to, 1, {
+        ...ingredients[from],
+      });
 
       ingredients.splice(from, 1, { ...removedTo });
 
@@ -79,7 +81,7 @@ export const currentBurgerComponentsSlice = createSlice({
     builder.addMatcher(
       apiSlice.endpoints.getIngredients.matchFulfilled,
       (state, { payload }) => {
-        const bun = payload.data.find(({ type }) => type === "bun");
+        const bun = payload.data.find(({ type }) => type === 'bun');
         const orderIds = bun?._id ? [bun._id] : [];
 
         return {

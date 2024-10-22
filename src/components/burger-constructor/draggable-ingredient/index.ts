@@ -1,1 +1,1 @@
-export * from "./draggable-ingredient";
+export * from './draggable-ingredient';

@@ -1,4 +1,4 @@
-import modalOverlayStyles from "./modal-overlay.module.css";
+import modalOverlayStyles from './modal-overlay.module.css';
 
 type ModalOverlayProps = {
   isOpen: boolean;

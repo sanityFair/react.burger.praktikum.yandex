@@ -35,7 +35,9 @@ export const BurgerIngredient = memo((props: Props) => {
 
   const handleSelectIngredient = () => {
     dispatch(currentIngredientSlice.actions.selectIngredient(props));
-    navigate(`/ingredients/${props._id}`, { state: { modal: true } });
+    navigate(`/ingredients/${props._id}`, {
+      state: { modal: true },
+    });
   };
 
   return (

@@ -1,14 +1,14 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { setupListeners } from "@reduxjs/toolkit/query";
+import { configureStore } from '@reduxjs/toolkit';
+import { setupListeners } from '@reduxjs/toolkit/query';
 import {
   apiSlice,
   collectedIngredientsSlice,
   currentIngredientSlice,
   currentBurgerComponentsSlice,
-} from "./services";
+} from './services';
 
 export const store = configureStore({
-  devTools: process.env.NODE_ENV === "development",
+  devTools: process.env.NODE_ENV === 'development',
   reducer: {
     [apiSlice.reducerPath]: apiSlice.reducer,
     [collectedIngredientsSlice.reducerPath]: collectedIngredientsSlice.reducer,

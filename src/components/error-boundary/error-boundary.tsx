@@ -1,32 +1,32 @@
-import { Component, ReactNode } from 'react'
+import { Component, ReactNode } from 'react';
 
 type ErrorBoundaryProps = {
-  fallback?: ReactNode
-  children?: ReactNode | ReactNode[]
-}
+  fallback?: ReactNode;
+  children?: ReactNode | ReactNode[];
+};
 
 type ErrorBoundaryState = {
-  hasError: boolean
-}
+  hasError: boolean;
+};
 
 export class ErrorBoundary extends Component<
   ErrorBoundaryProps,
   ErrorBoundaryState
 > {
   constructor(props: ErrorBoundaryProps) {
-    super(props)
-    this.state = { hasError: false }
+    super(props);
+    this.state = { hasError: false };
   }
 
   static getDerivedStateFromError() {
-    return { hasError: true }
+    return { hasError: true };
   }
 
   render() {
     if (this.state.hasError) {
-      return this.props.fallback
+      return this.props.fallback;
     }
 
-    return this.props.children
+    return this.props.children;
   }
 }

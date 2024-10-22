@@ -41,8 +41,8 @@
   position: relative;
 
   &::after {
-    content: "Перетащите ингредиенты";
-    font-family: "Jet Brains Mono";
+    content: 'Перетащите ингредиенты';
+    font-family: 'Jet Brains Mono';
     font-size: 24px;
     font-weight: normal;
     color: #fff;

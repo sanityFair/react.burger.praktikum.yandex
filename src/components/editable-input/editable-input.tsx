@@ -21,7 +21,9 @@ export const EditableInput = ({ callback, initialValue, ...props }: Props) => {
   const handleBlur = () => {
     toggle();
     inputRef.current &&
-      callback?.({ [inputRef.current.name]: inputRef.current.value });
+      callback?.({
+        [inputRef.current.name]: inputRef.current.value,
+      });
   };
 
   return (
