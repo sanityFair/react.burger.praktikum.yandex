@@ -1,7 +1,7 @@
-import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import modalStyles from "./modal.module.css";
-import { Portal, ModalOverlay } from "@/components";
-import { useEffect, useRef } from "react";
+import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import modalStyles from './modal.module.css';
+import { Portal, ModalOverlay } from '@/components';
+import { useEffect, useRef } from 'react';
 
 export type ModalProps = {
   isOpen: boolean;
@@ -14,13 +14,13 @@ export const Modal: React.FC<ModalProps> = ({
   isOpen,
   onClose,
   children,
-  title = "",
+  title = '',
 }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClick = (e: MouseEvent | TouchEvent | KeyboardEvent) => {
-      if (e instanceof KeyboardEvent && e.key === "Escape") {
+      if (e instanceof KeyboardEvent && e.key === 'Escape') {
         onClose();
       }
 
@@ -32,14 +32,14 @@ export const Modal: React.FC<ModalProps> = ({
       }
     };
 
-    document.addEventListener("keydown", handleClick);
-    document.addEventListener("mousedown", handleClick);
-    document.addEventListener("touchstart", handleClick);
+    document.addEventListener('keydown', handleClick);
+    document.addEventListener('mousedown', handleClick);
+    document.addEventListener('touchstart', handleClick);
 
     return () => {
-      document.removeEventListener("mousedown", handleClick);
-      document.removeEventListener("keydown", handleClick);
-      document.removeEventListener("touchstart", handleClick);
+      document.removeEventListener('mousedown', handleClick);
+      document.removeEventListener('keydown', handleClick);
+      document.removeEventListener('touchstart', handleClick);
     };
   }, []);
 
@@ -48,8 +48,8 @@ export const Modal: React.FC<ModalProps> = ({
       <ModalOverlay isOpen={isOpen}>
         <div className={modalStyles.modal} ref={wrapperRef}>
           <div className={modalStyles.header}>
-            <h1 className="text text_type_main-large">{title}</h1>
-            <CloseIcon type="primary" onClick={onClose} />
+            <h1 className='text text_type_main-large'>{title}</h1>
+            <CloseIcon type='primary' onClick={onClose} />
           </div>
           <div className={modalStyles.content}>{children}</div>
         </div>

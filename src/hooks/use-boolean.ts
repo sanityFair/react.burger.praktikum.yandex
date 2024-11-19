@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState } from 'react';
 
 export const useBoolean = (
   initialValue: boolean = false
@@ -8,7 +8,7 @@ export const useBoolean = (
     toggle: () => void;
     on: () => void;
     off: () => void;
-  }
+  },
 ] => {
   const [value, setValue] = useState<boolean>(initialValue);
 

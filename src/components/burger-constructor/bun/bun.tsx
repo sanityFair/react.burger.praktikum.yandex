@@ -1,20 +1,20 @@
-import { Ingredient } from "@/types";
-import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
+import { Ingredient } from '@/types';
+import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 
-import bunStyles from "./bun.module.css";
-import classNames from "classnames";
+import bunStyles from './bun.module.css';
+import classNames from 'classnames';
 
 type Props = Partial<Ingredient> & {
   text?: boolean;
   className?: string;
-  position: "top" | "bottom" | undefined;
+  position: 'top' | 'bottom' | undefined;
   isHover?: boolean;
 };
 
 export const Bun = ({
   price,
   image,
-  name = "",
+  name = '',
   className,
   position,
   isHover,
@@ -25,7 +25,7 @@ export const Bun = ({
       isLocked={true}
       text={name}
       price={price || 0}
-      thumbnail={image || ""}
+      thumbnail={image || ''}
       extraClass={classNames(
         bunStyles.ingredient,
         {
