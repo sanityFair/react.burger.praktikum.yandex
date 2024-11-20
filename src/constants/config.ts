@@ -9,4 +9,5 @@ export const config = {
   logout: '/auth/logout',
   token: '/auth/token',
   user: '/auth/user',
+  wsOrders: 'wss://norma.nomoreparties.space/orders/all',
 };

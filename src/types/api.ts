@@ -78,3 +78,20 @@ export type UserResponse = {
   success: boolean;
   user: User;
 };
+
+export type OrderInfo = {
+  ingredients: string[];
+  _id: string;
+  name: string;
+  status: 'created' | 'done' | 'pending';
+  number: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OrdersQueue = {
+  success: boolean;
+  orders: OrderInfo[];
+  total: number;
+  totalToday: number;
+};

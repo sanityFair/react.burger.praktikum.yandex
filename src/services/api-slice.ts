@@ -16,6 +16,7 @@ import type {
   RefreshTokenResponse,
   UserResponse,
   User,
+  OrdersQueue,
 } from '@/types';
 import { config } from '@/constants';
 import { getItem, setItem } from '@/utils';
@@ -156,6 +157,39 @@ export const apiSlice = createApi({
         },
       }),
     }),
+    getOrders: builder.query<OrdersQueue, void>({
+      queryFn: () => ({
+        data: { success: false, orders: [], total: 0, totalToday: 0 },
+      }),
+      async onCacheEntryAdded(
+        _,
+        { updateCachedData, cacheDataLoaded, cacheEntryRemoved }
+      ) {
+        const token = getItem('accessToken');
+
+        const ws = new WebSocket(
+          config.wsOrders.concat(`?token=${token.split(' ')[1]}`)
+        );
+
+        try {
+          await cacheDataLoaded;
+
+          ws.addEventListener('message', (event) => {
+            const data = JSON.parse(event.data);
+            updateCachedData(() => data);
+          });
+
+          ws.addEventListener('error', (event) => {
+            console.log(event, 'on error');
+          });
+        } catch (error) {
+          console.error('WebSocket error:', error);
+        }
+
+        await cacheEntryRemoved;
+        ws.close();
+      },
+    }),
   }),
 });
 
@@ -170,4 +204,5 @@ export const {
   useGetUserQuery,
   useLogoutMutation,
   usePatchUserMutation,
+  useGetOrdersQuery,
 } = apiSlice;

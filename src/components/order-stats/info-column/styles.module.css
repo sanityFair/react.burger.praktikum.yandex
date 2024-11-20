@@ -1,0 +1,25 @@
+.root {
+  display: flex;
+  flex-direction: column;
+
+  & > :first-child {
+    margin-bottom: 24px;
+  }
+
+  & ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: 'Iceland';
+    font-weight: normal;
+    font-size: 28px;
+
+    & > li {
+      margin-top: 8px;
+    }
+  }
+}
+
+.done {
+  color: var(--interface--success);
+}

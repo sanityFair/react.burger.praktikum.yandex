@@ -1,0 +1,45 @@
+.root {
+  display: grid;
+  width: 680px;
+  margin: 0 auto;
+  padding-top: 60px;
+
+  & .counter {
+    display: inline-flex;
+    gap: 4px;
+  }
+
+  & .ingredients {
+    display: grid;
+    row-gap: 16px;
+    max-height: 300px;
+    padding-right: 24px;
+    overflow-y: scroll;
+
+    & .ingredient {
+      display: grid;
+      grid-template-columns: 70px 1fr max-content;
+      align-items: center;
+      column-gap: 16px;
+    }
+  }
+
+  & .number {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  & .status {
+    color: var(--interface--success);
+    margin-bottom: 60px;
+    margin-top: 12px;
+  }
+
+  & .info {
+    margin-top: 40px;
+    display: flex;
+    padding-right: 24px;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
