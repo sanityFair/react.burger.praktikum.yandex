@@ -36,6 +36,9 @@ export const apiSlice = createApi({
         url: config.orders,
         method: 'POST',
         body: payload,
+        headers: {
+          authorization: getItem('accessToken'),
+        },
       }),
     }),
     resetPassword: builder.mutation<
