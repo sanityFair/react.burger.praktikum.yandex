@@ -5,7 +5,6 @@ import {
 import burgerIngredientStyles from './burger-ingredient.module.css';
 import { Ingredient } from '@/types';
 import { memo, useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import {
   currentIngredientSlice,
   selectIdsCurrentBurgerIngredients,
@@ -13,13 +12,14 @@ import {
 import { useDrag } from 'react-dnd';
 import isEqual from 'lodash.isequal';
 import { useNavigate } from 'react-router';
+import { useAppDispatch, useAppSelector } from '@/hooks';
 
 type Props = Partial<Ingredient>;
 
 export const BurgerIngredient = memo((props: Props) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const ids = useSelector(selectIdsCurrentBurgerIngredients, isEqual);
+  const ids = useAppSelector(selectIdsCurrentBurgerIngredients, isEqual);
   const count = useMemo(
     () => ids.filter((id) => id === props._id).length,
     [props._id, ids]

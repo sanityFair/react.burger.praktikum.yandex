@@ -5,9 +5,8 @@ import {
 
 import burgerConstructorStyles from './burger-constructor.module.css';
 import { OrderDetails } from '../order-details';
-import { useBoolean } from '@/hooks';
+import { useAppDispatch, useAppSelector, useBoolean } from '@/hooks';
 import { Modal } from '../modal';
-import { useDispatch, useSelector } from 'react-redux';
 import {
   currentBurgerComponentsSlice,
   selectCurrentBurgerBun,
@@ -30,9 +29,9 @@ export const BurgerConstructor = () => {
   const [createOrder, { data }] = useCreateOrderMutation();
   const [isOpen, { off, on }] = useBoolean(false);
   const { isError } = useGetUserQuery();
-  const bun = useSelector(selectCurrentBurgerBun, isEqual);
-  const ingredients = useSelector(selectCurrentBurgerIngredients, isEqual);
-  const ids = useSelector(selectIdsCurrentBurgerIngredients, isEqual);
+  const bun = useAppSelector(selectCurrentBurgerBun, isEqual);
+  const ingredients = useAppSelector(selectCurrentBurgerIngredients, isEqual);
+  const ids = useAppSelector(selectIdsCurrentBurgerIngredients, isEqual);
   const amount = useMemo(
     () =>
       ids.reduce((prev, id) => {
@@ -50,7 +49,7 @@ export const BurgerConstructor = () => {
       }, 0),
     [ids, ingredients, bun]
   );
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const [{ isBunHover }, dropTargetBun] = useDrop({
     accept: 'bun',
@@ -88,7 +87,8 @@ export const BurgerConstructor = () => {
           position='top'
           name={bun?.name.concat(' (верх)')}
           isHover={isBunHover}
-          {...bun}
+          image={bun?.image}
+          price={bun?.price}
         />
       </div>
       <div
@@ -109,7 +109,8 @@ export const BurgerConstructor = () => {
           position='bottom'
           name={bun?.name.concat(' (низ)')}
           isHover={isBunHover}
-          {...bun}
+          image={bun?.image}
+          price={bun?.price}
         />
       </div>
       <div className={burgerConstructorStyles.order}>
