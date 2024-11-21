@@ -2,10 +2,10 @@ import { BurgerIngredient } from '../burger-ingredient';
 
 import bunListStyles from './ingredient-list.module.css';
 import { forwardRef, useMemo } from 'react';
-import { useSelector } from 'react-redux';
 import { selectIngredients } from '@/services';
 import isEqual from 'lodash.isequal';
 import { Outlet } from 'react-router';
+import { useAppSelector } from '@/hooks';
 
 type Props = {
   type: 'bun' | 'sauce' | 'main';
@@ -14,7 +14,7 @@ type Props = {
 
 export const IngredientList = forwardRef<HTMLDivElement, Props>(
   ({ type, title }, ref) => {
-    const ingredients = useSelector(selectIngredients, isEqual);
+    const ingredients = useAppSelector(selectIngredients, isEqual);
     const items = useMemo(
       () => ingredients.filter((item) => item.type === type),
       [ingredients]

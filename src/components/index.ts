@@ -8,3 +8,5 @@ export * from './modal-overlay';
 export * from './modal';
 export * from './editable-input';
 export * from './protected-route-element';
+export * from './ingredient-preview';
+export * from './amount';

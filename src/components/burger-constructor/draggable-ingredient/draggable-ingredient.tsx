@@ -6,9 +6,9 @@ import draggableIngredientStyles from './draggable-ingredient.module.css';
 import { Ingredient } from '@/types';
 import { useDrag, useDrop } from 'react-dnd';
 import { useRef } from 'react';
-import { useDispatch } from 'react-redux';
 import { currentBurgerComponentsSlice } from '@/services';
 import classNames from 'classnames';
+import { useAppDispatch } from '@/hooks';
 
 type Props = Partial<Ingredient> & {
   index?: number;
@@ -21,7 +21,7 @@ export const DraggableIngredient = ({
   index = 0,
 }: Props) => {
   const ref = useRef<HTMLDivElement>(null);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const [{ isHover }, drop] = useDrop({
     accept: 'item',

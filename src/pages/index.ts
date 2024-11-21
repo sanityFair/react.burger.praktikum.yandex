@@ -7,3 +7,6 @@ export * from './reset-password-page';
 export * from './home-page';
 export * from './not-found-page';
 export * from './user-profile-editor-page';
+export * from './feed-page';
+export * from './feed-details-page';
+export * from './order-history-page';

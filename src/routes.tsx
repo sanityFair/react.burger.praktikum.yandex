@@ -1,10 +1,13 @@
 import { createBrowserRouter } from 'react-router-dom';
 import {
+  FeedDetailsPage,
+  FeedPage,
   ForgotPasswordPage,
   HomePage,
   IngredientDetailsPage,
   LoginPage,
   NotFoundPage,
+  OrderHistoryPage,
   ProfileSettingsPage,
   RegistrationPage,
   ResetPasswordPage,
@@ -31,19 +34,25 @@ export const router = createBrowserRouter([
           },
           {
             path: 'orders',
-            element: 'orders',
-            children: [
-              {
-                path: ':id',
-                element: 'order-details',
-              },
-            ],
+            Component: OrderHistoryPage,
           },
         ],
       },
       {
+        path: 'profile/orders/:id',
+        element: <ProtectedRouteElement element={<FeedDetailsPage />} />,
+      },
+      {
         path: 'ingredients/:id',
         Component: IngredientDetailsPage,
+      },
+      {
+        path: 'feed',
+        Component: FeedPage,
+      },
+      {
+        path: 'feed/:id',
+        Component: FeedDetailsPage,
       },
       {
         path: 'register',
