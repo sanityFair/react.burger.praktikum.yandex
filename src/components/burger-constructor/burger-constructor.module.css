@@ -2,13 +2,12 @@
   display: grid;
   place-items: flex-end;
   row-gap: 16px;
-  margin-top: 80px;
 }
 
 .content {
   display: grid;
   row-gap: 16px;
-  height: 470px;
+  height: 280px;
   overflow-y: scroll;
   justify-content: center;
   width: 100%;
