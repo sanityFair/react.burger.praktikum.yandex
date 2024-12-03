@@ -6,7 +6,7 @@
 
 .item {
   display: grid;
-  margin-top: 60px;
+  margin-top: 30px;
   justify-content: flex-start;
 }
 
