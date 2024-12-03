@@ -33,6 +33,6 @@ export const useIngredients = (ingredientIds?: string[]) => {
   return {
     currentIngredients,
     amount,
-    totalIngredients: formatIngredients(currentIngredients),
+    totalIngredients: formatIngredients(currentIngredients ?? []),
   };
 };
