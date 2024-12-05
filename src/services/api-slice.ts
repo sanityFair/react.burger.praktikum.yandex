@@ -171,7 +171,7 @@ export const apiSlice = createApi({
         const token = getItem('accessToken');
 
         const ws = new WebSocket(
-          config.wsOrders.concat(`?token=${token.split(' ')[1]}`)
+          config.wsOrders.concat(`?token=${token?.split(' ')[1]}`)
         );
 
         try {

@@ -3,6 +3,9 @@ import { apiSlice } from './api-slice';
 import { Ingredient } from '@/types';
 import { ApplicationState } from '@/store';
 
+const generateUUID = () =>
+  Math.random().toString(36).substring(2) + Date.now().toString(36);
+
 export type CurrentBurgerComponentsState = {
   bun?: Ingredient;
   ingredients: Ingredient[];
@@ -30,7 +33,7 @@ export const currentBurgerComponentsSlice = createSlice({
       if (payload.type === 'bun') {
         return {
           ...state,
-          bun: { ...payload, key: crypto.randomUUID() },
+          bun: { ...payload, key: generateUUID() },
           orderIds,
         };
       }
@@ -39,7 +42,7 @@ export const currentBurgerComponentsSlice = createSlice({
         ...state,
         ingredients: [
           ...state.ingredients,
-          { ...payload, key: crypto.randomUUID() },
+          { ...payload, key: generateUUID() },
         ],
         orderIds: [...orderIds, payload._id],
       };
