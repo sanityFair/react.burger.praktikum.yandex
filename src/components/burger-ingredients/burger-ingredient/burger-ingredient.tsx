@@ -14,7 +14,11 @@ import isEqual from 'lodash.isequal';
 import { useNavigate } from 'react-router';
 import { useAppDispatch, useAppSelector } from '@/hooks';
 
-type Props = Partial<Ingredient>;
+type Props = Partial<
+  Ingredient & {
+    testid?: string;
+  }
+>;
 
 export const BurgerIngredient = memo((props: Props) => {
   const dispatch = useAppDispatch();
@@ -47,6 +51,7 @@ export const BurgerIngredient = memo((props: Props) => {
         onClick={handleSelectIngredient}
         draggable={true}
         ref={dragRef}
+        data-testid={props.testid}
       >
         <div className={burgerIngredientStyles.imageContainer}>
           <img src={props.image} alt={props.name} width='100%' />

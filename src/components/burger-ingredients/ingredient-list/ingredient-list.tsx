@@ -26,7 +26,11 @@ export const IngredientList = forwardRef<HTMLDivElement, Props>(
           <h6 className='text text_type_main-medium'>{title}</h6>
           <div className={bunListStyles.items}>
             {items.map((item) => (
-              <BurgerIngredient {...item} key={`${item._id}-${item.name}`} />
+              <BurgerIngredient
+                {...item}
+                key={`${item._id}-${item.name}`}
+                testid={item.name}
+              />
             ))}
           </div>
         </div>

@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "lib": ["es5", "dom"],
+    "types": ["cypress", "node"],
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "target": "esnext"
+  },
+  "include": ["**/*.ts", "support/worker.ts"]
+}

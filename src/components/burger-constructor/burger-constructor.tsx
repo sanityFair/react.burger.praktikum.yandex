@@ -97,6 +97,7 @@ export const BurgerConstructor = () => {
           [burgerConstructorStyles.empty]: !ingredients.length,
         })}
         ref={dropTargetIngredient}
+        data-testid='constructor-area'
       >
         {ingredients
           .filter((item) => item.type !== 'bun')
@@ -123,6 +124,7 @@ export const BurgerConstructor = () => {
           size='large'
           extraClass='ml-4'
           onClick={handleCreateOrder}
+          data-testid='order-button'
         >
           Оформить заказ
         </Button>

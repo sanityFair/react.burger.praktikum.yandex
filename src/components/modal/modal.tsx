@@ -46,10 +46,12 @@ export const Modal: React.FC<ModalProps> = ({
   return (
     <Portal>
       <ModalOverlay isOpen={isOpen}>
-        <div className={modalStyles.modal} ref={wrapperRef}>
+        <div className={modalStyles.modal} ref={wrapperRef} data-testid='modal'>
           <div className={modalStyles.header}>
             <h1 className='text text_type_main-large'>{title}</h1>
-            <CloseIcon type='primary' onClick={onClose} />
+            <div onClick={onClose} data-testid='modal-close-button'>
+              <CloseIcon type='primary' />
+            </div>
           </div>
           <div className={modalStyles.content}>{children}</div>
         </div>

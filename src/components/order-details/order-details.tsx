@@ -8,7 +8,9 @@ type Props = {
 export const OrderDetails = ({ orderId }: Props) => (
   <div className={orderDetailsStyles.root}>
     <div className={orderDetailsStyles.order}>
-      <p className='text text_type_digits-large'>{orderId}</p>
+      <p className='text text_type_digits-large' data-testid='order-number'>
+        {orderId}
+      </p>
       <p className='text text_type_main-medium'>идентификатор заказа</p>
     </div>
     <div className={classNames(orderDetailsStyles.icon, 'mt-15 mb-15')} />
